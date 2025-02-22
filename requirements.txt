@@ -10,3 +10,5 @@ anyio~=4.3.0
 requests~=2.32.3
 kcl_lib==0.10.8
 XlsxWriter==3.2.2
+maturin~=1.8.2
+openpyxl~=3.1.5

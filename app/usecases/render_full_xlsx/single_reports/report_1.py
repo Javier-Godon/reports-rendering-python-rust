@@ -1,26 +1,36 @@
+import io
+import time
+
 import xlsxwriter
 from xlsxwriter import Workbook
 
 
-async def render(workbook: Workbook,date_from: int, date_to: int):
-    # Create an new Excel file and add a worksheet.
-    worksheet = workbook.add_worksheet()
-    # Widen the first column to make the text clearer.
-    worksheet.set_column("A:A", 20)
+# async def render(workbook: Workbook,date_from: int, date_to: int):
+#     worksheet = workbook.add_worksheet("Report_1")
+#     worksheet.set_column("A:A", 20)
+#     bold = workbook.add_format({"bold": True})
+#
+#     worksheet.write("A1", "Report 1")
+#     worksheet.write("A2", f"From {date_from} to {date_to}", bold)
+#     worksheet.write(3, 0, 123)
+#     worksheet.write(4, 0, 456.789)
 
-    # Add a bold format to use to highlight cells.
+
+def render(date_from: int, date_to: int):
+    output = io.BytesIO()
+    workbook = xlsxwriter.Workbook(output, {"in_memory": True})
+    worksheet = workbook.add_worksheet("Report_1")
+
+    worksheet.set_column("A:A", 20)
     bold = workbook.add_format({"bold": True})
 
-    # Write some simple text.
-    worksheet.write("A1", "Hello")
+    worksheet.write("A1", "Report 1 Details")
+    worksheet.write("A2", f"From {date_from} to {date_to}", bold)
+    worksheet.write(3, 0, 111)
+    worksheet.write(4, 0, 222.333)
 
-    # Text with formatting.
-    worksheet.write("A2", "World", bold)
-
-    # Write some numbers, with row/column notation.
-    worksheet.write(2, 0, 123)
-    worksheet.write(3, 0, 123.456)
-
-    # Insert an image.
-    worksheet.insert_image("B5", "logo.png")
+    workbook.close()
+    output.seek(0)
+    time.sleep(5)
+    return output.getvalue()
 
