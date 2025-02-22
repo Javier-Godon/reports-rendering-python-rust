@@ -1,0 +1,19 @@
+[package]
+name = "pyo3_rust"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "pyo3_rust"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.23.4", features = ["extension-module"] }
+rayon = "1.10.0"
+base64 = "0.21.7"
+# tokio = { version = "1.43.0", features = ["rt-multi-thread"] }
+
+# [dependencies.pyo3-asyncio]
+# version = "0.20.0"
+# features = ["tokio-runtime"]
