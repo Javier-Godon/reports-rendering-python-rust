@@ -10,7 +10,17 @@ In this case we have to consider that we are using Rust and we have to compile t
 
 Configure github with the required permissions and environment variables
 
+![image](./resources/add_secrets_to_github.png)
+
+![image](./resources/GITHUB_TOKEN_permissions.png)
+
 Create a Dockerfile
+
+
 Create dagger pipeline in dagger_python/main.py
 
 In order to run the dagger pipeline in pycharm configure a run with the .env (added to credentials and .gitignore)
+
+![image](./resources/credentials_env.png)
+
+![image](./resources/pycharm_run_with_env_variables.png)

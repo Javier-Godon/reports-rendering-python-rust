@@ -92,3 +92,12 @@ This repository goes beyond these basic examples by:
 
 By integrating Rust into a Python project strategically, we achieve significant performance gains while retaining Python’s flexibility and ecosystem. 🚀
 
+## Annex: Creating an Image and a Dagger Pipeline
+
+In addition to everything mentioned above, when incorporating Rust into a Python project, you must consider the compilation process. To provide a complete and fully functional example, we also include this section.
+
+In our case, we provide the necessary `Dockerfile` to generate the image, as well as the pipeline (using Dagger) to integrate the project into the CI/CD process.
+
+You will find the pipeline in the `dagger_pipeline` folder, which is written in Python, and a README.md to help you. Later, we will integrate it into our CD process.
+
+
