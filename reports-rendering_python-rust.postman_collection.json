@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "677732d7-c915-4f61-85ef-fb597d34480b",
+		"name": "reports-rendering_python-rust",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11424667"
+	},
+	"item": [
+		{
+			"name": "RenderXlsx",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date_from\": 1708023223,\n    \"date_to\": 1739645623\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/render/xlsx/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"render",
+						"xlsx",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
