@@ -1,26 +1,32 @@
-CI/CD
-Use dagger python In a python project is very straightforward (I am assuming that this pipeline is always
-related with this project, otherwise I will create an independent python project for it)
-1. Create folder dagger_python
-2. create a main.py
-3. add the necessary dependencies to the dependencies.txt of the main project
+# CI/CD
 
-To generate the image take into account: https://fastapi.tiangolo.com/deployment/docker/#package-requirements
-In this case we have to consider that we are using Rust and we have to compile this part of the code using maturin
+## Use Dagger with Python
 
-Configure github with the required permissions and environment variables
+Using Dagger in a Python project is very straightforward. (I assume that this pipeline is always related to this project; otherwise, I would create an independent Python project for it.)
 
-![image](./resources/add_secrets_to_github.png)
+### Steps:
+1. Create a folder `dagger_python`.
+2. Create a `main.py` file.
+3. Add the necessary dependencies to the `dependencies.txt` of the main project.
 
-![image](./resources/GITHUB_TOKEN_permissions.png)
+### Generating the Image
+To generate the image, take into account: [FastAPI Docker Deployment](https://fastapi.tiangolo.com/deployment/docker/#package-requirements).
 
-Create a Dockerfile
+In this case, since we are using Rust, we must compile this part of the code using `maturin`.
 
+## Configure GitHub with Required Permissions and Environment Variables
 
-Create dagger pipeline in dagger_python/main.py
+![Add Secrets to GitHub](/resources/add_secrets_to_github.png)
 
-In order to run the dagger pipeline in pycharm configure a run with the .env (added to credentials and .gitignore)
+![GitHub Token Permissions](/resources/GITHUB_TOKEN_permissions.png)
 
-![image](./resources/credentials_env.png)
+## Create a Dockerfile
 
-![image](./resources/pycharm_run_with_env_variables.png)
+## Create a Dagger Pipeline in `dagger_python/main.py`
+
+## Running the Dagger Pipeline in PyCharm
+To run the Dagger pipeline in PyCharm, configure a run with the `.env` file (added to credentials and `.gitignore`).
+
+![Credentials .env](/resources/credentials_env.png)
+
+![PyCharm Run with Environment Variables](/resources/pycharm_run_with_env_variables.png)
