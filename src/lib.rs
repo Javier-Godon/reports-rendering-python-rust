@@ -13,7 +13,7 @@ fn pyo3_rust(_py: Python, m: &Bound<'_, PyModule>) -> PyResult<()> {
     Ok(())
 }
 
-fn render_report(report_script: &str, date_from: &str, date_to: &str) -> Vec<u8> {
+fn render_report(report_script: &str, date_from: i64, date_to: i64) -> Vec<u8> {
     let output = Command::new("python3")
         .arg("-c")
         .arg(format!(
@@ -128,16 +128,7 @@ else:
 }
 
 #[pyfunction]
-fn render_parallel_xlsx() -> PyResult<Vec<u8>> {
-    let reports = vec![
-        "app.usecases.render_full_xlsx.single_reports.report_1",
-        "app.usecases.render_full_xlsx.single_reports.report_2",
-        "app.usecases.render_full_xlsx.single_reports.report_3",
-    ];
-
-    let date_from = "2024-01-01";
-    let date_to = "2024-01-31";
-
+fn render_parallel_xlsx(reports: Vec<String>, date_from: i64, date_to: i64) -> PyResult<Vec<u8>> {
     let (sender, receiver) = mpsc::channel();
 
     let handles: Vec<_> = reports
@@ -145,14 +136,15 @@ fn render_parallel_xlsx() -> PyResult<Vec<u8>> {
         .map(|report| {
             let sender = sender.clone();
             thread::spawn(move || {
-                let data = render_report(report, &date_from, &date_to);
+                let data = render_report(&report, date_from, date_to);
                 sender.send(data).unwrap();
             })
         })
         .collect();
 
+    // Ensure all threads have finished
     for handle in handles {
-        handle.join().expect("Thread panicked!");
+        handle.join().expect("❌ Thread panicked!");
     }
 
     // Collect results from all threads

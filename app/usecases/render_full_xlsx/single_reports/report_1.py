@@ -4,18 +4,6 @@ import time
 import xlsxwriter
 from xlsxwriter import Workbook
 
-
-# async def render(workbook: Workbook,date_from: int, date_to: int):
-#     worksheet = workbook.add_worksheet("Report_1")
-#     worksheet.set_column("A:A", 20)
-#     bold = workbook.add_format({"bold": True})
-#
-#     worksheet.write("A1", "Report 1")
-#     worksheet.write("A2", f"From {date_from} to {date_to}", bold)
-#     worksheet.write(3, 0, 123)
-#     worksheet.write(4, 0, 456.789)
-
-
 def render(date_from: int, date_to: int):
     output = io.BytesIO()
     workbook = xlsxwriter.Workbook(output, {"in_memory": True})
