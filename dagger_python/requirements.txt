@@ -1,0 +1,6 @@
+pip~=24.3.1
+dagger-io~=0.15.1
+anyio~=4.3.0
+requests~=2.32.3
+kcl_lib==0.10.8
+maturin~=1.8.2
