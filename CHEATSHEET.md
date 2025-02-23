@@ -1,13 +1,38 @@
-to initialize a rust project cargo new <project-name>
-In this case is recommended to use maturin; 
-maturin new -b pyo3 <project-name>
-This will give me the needed configurations.
-To keep my python project untouched I am going to extract all components outside of this folder to my project, so src will be at the same level of app, and cargo.toml and pyproject.toml will be at the root of my project
-And then delete the created folder (project-name) that at this point shold be empty
-once my code is finished we have to build the Rust module: execute this command from the root of the project
-maturin develop
+## Initializing a Rust Project
 
-this: 
-- Builds the Rust module
-- Install it as a Python package in your virtual environment
-- Makes it available for import inside your app modules
+To initialize a Rust project, use:
+
+```sh
+cargo new <project-name>
+```
+
+In this case, it is recommended to use `maturin`:
+
+```sh
+maturin new -b pyo3 <project-name>
+```
+
+This will generate the necessary configurations.
+
+## Project Structure Adjustment
+
+To keep the Python project structure untouched, extract all components outside of the created folder into your existing project. Specifically:
+
+- Move `src` to the same level as `app`.
+- Place `Cargo.toml` and `pyproject.toml` at the root of your project.
+- Delete the now-empty `<project-name>` folder.
+
+## Building the Rust Module
+
+Once the Rust code is finished, build the Rust module by executing the following command from the root of the project:
+
+```sh
+maturin develop
+```
+
+This command:
+
+- Builds the Rust module.
+- Installs it as a Python package in your virtual environment.
+- Makes it available for import inside your app modules.
+
