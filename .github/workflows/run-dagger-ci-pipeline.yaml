@@ -43,6 +43,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y python3-pip python3-venv cargo
 
+      - name: Debug repository structure
+        run: ls -R
+
       # Step 6: Create & activate Python virtual environment
       - name: Set up virtual environment
         run: |
