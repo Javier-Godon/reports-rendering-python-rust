@@ -50,10 +50,12 @@ jobs:
           source dagger_python/venv/bin/activate
 
       # Step 7: Install maturin (for Rust-Python bindings)
-      - name: Install maturin
+      - name: Install maturin & build Rust dependencies
         run: |
           source dagger_python/venv/bin/activate
           pip install maturin
+          cd rust_project_directory  # Change this if your Rust code is in another directory
+          cargo check  # Ensures Cargo.lock is generated
 
       # Step 8: Install Python dependencies (from requirements.txt)
       - name: Install dependencies
