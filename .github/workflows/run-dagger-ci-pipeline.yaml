@@ -1,0 +1,68 @@
+name: Run Dagger Pipeline for Python + Rust (pyo3)
+
+on:
+  workflow_dispatch: # Allows manual trigger
+  repository_dispatch:
+    types:
+      - dagger-pipeline-trigger
+
+jobs:
+  run-dagger-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Set Environment Variables
+      - name: Set Environment Variables
+        env:
+          CR_PAT: ${{ secrets.CR_PAT }}
+          USERNAME: ${{ secrets.USERNAME }}
+        run: |
+          echo "CR_PAT=${CR_PAT}" >> $GITHUB_ENV
+          echo "USERNAME=${USERNAME}" >> $GITHUB_ENV
+
+      # Step 2: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 3: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Step 4: Set up Rust (needed for pyo3)
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          components: clippy, rustfmt
+
+      # Step 5: Install system dependencies for Rust & Python
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip python3-venv cargo
+
+      # Step 6: Create & activate Python virtual environment
+      - name: Set up virtual environment
+        run: |
+          python -m venv dagger_python/venv
+          source dagger_python/venv/bin/activate
+
+      # Step 7: Install maturin (for Rust-Python bindings)
+      - name: Install maturin
+        run: |
+          source dagger_python/venv/bin/activate
+          pip install maturin
+
+      # Step 8: Install Python dependencies (from requirements.txt)
+      - name: Install dependencies
+        run: |
+          source dagger_python/venv/bin/activate
+          pip install -r dagger_python/requirements.txt
+
+      # Step 9: Execute Dagger pipeline
+      - name: Run Dagger pipeline
+        run: |
+          source dagger_python/venv/bin/activate
+          python dagger_python/main.py
