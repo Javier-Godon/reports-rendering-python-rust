@@ -57,8 +57,8 @@ jobs:
         run: |
           source dagger_python/venv/bin/activate
           pip install maturin
-          cd rust_project_directory  # Change this if your Rust code is in another directory
-          cargo check  # Ensures Cargo.lock is generated
+          cd src  # Move to the Rust project directory
+          cargo check  # Ensure Rust dependencies are installed
 
       # Step 8: Install Python dependencies (from requirements.txt)
       - name: Install dependencies
