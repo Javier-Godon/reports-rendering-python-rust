@@ -74,4 +74,4 @@ async def main():
         else:
             print(f"Failed to trigger GitHub Action: {response.status_code} {response.text}")
 
-anyio.run(main)
+anyio.run(main) 
