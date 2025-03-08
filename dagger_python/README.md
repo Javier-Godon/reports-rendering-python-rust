@@ -30,3 +30,5 @@ To run the Dagger pipeline in PyCharm, configure a run with the `.env` file (add
 ![Credentials .env](/resources/credentials_env.png)
 
 ![PyCharm Run with Environment Variables](/resources/pycharm_run_with_env_variables.png)
+
+you can find all necessary configurations for a fully functional CI/CD in this repository (dagger_python, .github/workflows) and in [Cluster continuous delivery](https://github.com/Javier-Godon/cluster-continuous-delivery)

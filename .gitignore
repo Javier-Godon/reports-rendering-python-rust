@@ -327,3 +327,5 @@ debug/
 .ionide
 
 credentials
+
+.idea/*
