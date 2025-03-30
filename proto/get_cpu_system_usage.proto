@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cpu_system_usage;
+
+service GetCpuSystemUsageService {
+    rpc GetCpuSystemUsage (GetCpuSystemUsageRequest) returns (GetCpuSystemUsageResponse);
+}
+
+message GetCpuSystemUsageRequest {
+    int64 date_from = 1;
+    int64 date_to = 2;
+}
+
+message CpuUsage {
+    string cpu = 1;
+    double avg_usage = 2;
+    double max_usage = 3;
+    double min_usage = 4;
+  }
+  
+message GetCpuSystemUsageResponse {
+    repeated CpuUsage usages = 1;
+  }
+

@@ -119,7 +119,7 @@ else:
         .expect("Failed to read merged output");
 
     if !error_output.is_empty() {
-        eprintln!("⚠️ Python merge script error: {}", error_output);
+        println!("⚠️ Python merge script error: {}", error_output);
     }
 
     println!("✅ Merged report size: {} bytes", merged_bytes.len());
