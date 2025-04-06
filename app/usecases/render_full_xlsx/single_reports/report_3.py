@@ -18,5 +18,4 @@ def render(date_from: int, date_to: int):
 
     workbook.close()
     output.seek(0)
-    time.sleep(5)
     return output.getvalue()
